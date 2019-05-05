@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'xadmin',
     'crispy_forms',
+    'users'
 ]
+AUTH_USER_MODEL = "users.UserProfile"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
