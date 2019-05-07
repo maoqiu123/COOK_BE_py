@@ -1,9 +1,7 @@
 # _*_ coding: utf-8 _*_
-__author__ = 'maoqiu'
-__data = '2019/5/4 15:13'
-
 import xadmin
 from xadmin import views
+from .models import User
 
 
 class BaseSetting(object):
@@ -17,5 +15,12 @@ class GlobalSettings(object):
     menu_style = "accordion"
 
 
+class UserAdmin(object):
+    list_display = ['username', 'email', 'password', 'avatar', 'token', 'token_expire']
+    search_fields = ['username', 'email']
+    list_filter = ['username', 'email']
+
+
+xadmin.site.register(User, UserAdmin)
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)

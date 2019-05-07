@@ -5,7 +5,10 @@ from datetime import datetime
 # Create your models here.
 
 
-class UserProfile(AbstractUser):
+class User(models.Model):
+    username = models.CharField(max_length=100, verbose_name=u"用户名")
+    email = models.EmailField(verbose_name=u"邮箱")
+    password = models.CharField(max_length=255, verbose_name=u"密码")
     avatar = models.ImageField(max_length=100, verbose_name=u"用户头像", null=True, blank=True)
     token = models.CharField(max_length=200, verbose_name=u"用户token", null=True, blank=True)
     token_expire = models.DateTimeField(default=datetime.now, verbose_name=u"token过期时间", null=True, blank=True)
@@ -17,3 +20,7 @@ class UserProfile(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class Test(models.Model):
+    pass
