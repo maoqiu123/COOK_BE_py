@@ -3,7 +3,7 @@ from django.views.generic.base import View
 from utils.ResponseTool import response, response_form
 
 from .forms import RegisterForm, LoginForm
-from .service import check_email, register
+from .service import check_email, register, login
 
 
 class UserView(View):
@@ -27,8 +27,17 @@ class LoginView(View):
         pass
 
     def post(self, request):
-        print(self)
         login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            token = login(request)
+            if token == 102:
+                return response(102, "登录失败，邮箱账号不存在", None)
+            elif token == 2001:
+                return response(2001, "账户密码不匹配", None)
+            data = {"token": token}
+            return response(1000, "登录成功", data)
+        else:
+            return response_form(1001, login_form.errors, None)
 
 
 
