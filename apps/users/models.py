@@ -22,5 +22,3 @@ class User(models.Model):
         return self.username
 
 
-class Test(models.Model):
-    pass

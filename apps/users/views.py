@@ -4,6 +4,7 @@ from utils.ResponseTool import response, response_form
 
 from .forms import RegisterForm, LoginForm
 from .service import check_email, register, login
+from utils.TokenTool import check_token
 
 
 class RegisterView(View):
@@ -19,10 +20,12 @@ class RegisterView(View):
             return response_form(1001, register_form.errors, None)
 
 
+class TestView(View):
+    def post(self, request):
+        print(request.user)
+        data = {"token": request.my_user.token}
+        return response(1000, "token验证成功", data)
 
-class UserView(View):
-    def get(self, request):
-        pass
 
 
 class LoginView(View):
