@@ -18,10 +18,10 @@ import xadmin
 from django.urls import path
 from django.conf.urls import url, include
 
-from users.views import UserView, LoginView
+from users.views import RegisterView, LoginView
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-    url('^user/$', UserView.as_view()),
+    url('^register/$', RegisterView.as_view()),
     url('^login/$', LoginView.as_view())
 ]

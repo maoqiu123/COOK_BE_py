@@ -6,10 +6,7 @@ from .forms import RegisterForm, LoginForm
 from .service import check_email, register, login
 
 
-class UserView(View):
-    def get(self, request):
-        pass
-
+class RegisterView(View):
     def post(self, request):
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():
@@ -20,6 +17,12 @@ class UserView(View):
             return response(1000, "注册成功", None)
         else:
             return response_form(1001, register_form.errors, None)
+
+
+
+class UserView(View):
+    def get(self, request):
+        pass
 
 
 class LoginView(View):
