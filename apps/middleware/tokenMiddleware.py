@@ -4,7 +4,7 @@ from utils.TokenTool import check_token
 from utils.ResponseTool import response
 
 
-class Middle1(MiddlewareMixin):
+class TokenMiddleware(MiddlewareMixin):
     white_list = ['/login/', '/register/', "/xadmin/"]  # 白名单
     balck_list = ['/black/', ]  # 黑名单
 
