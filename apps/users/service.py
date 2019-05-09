@@ -32,5 +32,10 @@ def login(request):
         return 2001
 
 
-
+def update_user(request):
+    user = User.objects.filter(email=request.my_user.email)[0]
+    user.username = request.PUT.get('username')
+    user.save()
+    print(user)
+    pass
 

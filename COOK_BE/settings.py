@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'xadmin',
     'crispy_forms',
-    'users'
+    'users',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'middleware.tokenMiddleware.Middle1',
+    'middleware.tokenMiddleware.TokenMiddleware',
+    'middleware.requestMiddleware.RestfulMiddleware',
 ]
 
 ROOT_URLCONF = 'COOK_BE.urls'

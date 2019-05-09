@@ -2,9 +2,11 @@
 from django.views.generic.base import View
 from utils.ResponseTool import response, response_form
 
-from .forms import RegisterForm, LoginForm
-from .service import check_email, register, login
+from .forms import RegisterForm, LoginForm, UserUpdateForm
+from .service import check_email, register, login, update_user
 from utils.TokenTool import check_token
+from django.http import QueryDict
+from django.http.multipartparser import MultiPartParser
 
 
 class RegisterView(View):
@@ -20,18 +22,7 @@ class RegisterView(View):
             return response_form(1001, register_form.errors, None)
 
 
-class TestView(View):
-    def post(self, request):
-        print(request.user)
-        data = {"token": request.my_user.token}
-        return response(1000, "token验证成功", data)
-
-
-
 class LoginView(View):
-    def get(self):
-        pass
-
     def post(self, request):
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
@@ -46,6 +37,18 @@ class LoginView(View):
             return response_form(1001, login_form.errors, None)
 
 
+class UserView(View):
+    def put(self, request):
+        user_update_form = UserUpdateForm(request.PUT)
+        if user_update_form.is_valid():
+            update_user(request)
+            return response(1000, '修改用户信息成功', None)
+        else:
+            return response_form(1001, user_update_form.errors, None)
 
 
-
+class TestView(View):
+    def post(self, request):
+        print(request.user)
+        data = {"token": request.my_user.token}
+        return response(1000, "token验证成功", data)
