@@ -18,13 +18,15 @@ class Middle1(MiddlewareMixin):
         elif next_url in self.balck_list:
             return HttpResponse('This is an illegal URL')
         else:
-            user = check_token(request.headers['Token'])
+            if request.headers.get('token'):
+                user = check_token(request.headers.get('token'))
+            else:
+                return response(203, "未传入token", None)
             if user == 201:
                 return response(201, "token不存在", None)
             elif user == 202:
                 return response(202, "token已过期", None)
             request.my_user = user
-
 
     def process_response(self, request, response):
         return response  # 执行完了这个中间件一定要 传递给下一个中间件
