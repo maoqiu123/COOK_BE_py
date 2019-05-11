@@ -2,6 +2,8 @@
 from users.models import User
 from django.contrib.auth.hashers import make_password, check_password
 from utils.TokenTool import make_token
+from django.forms.models import model_to_dict
+allow = ['id', 'password', 'token', 'token_expire']
 
 
 def register(request):
@@ -39,3 +41,12 @@ def update_user(request):
     print(user)
     pass
 
+
+def get_user(request):
+    user = request.my_user
+    user = model_to_dict(user)
+    for key in allow:
+        user.pop(key)
+    for key in user:
+        user[key] = str(user[key])
+    return user

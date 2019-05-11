@@ -28,8 +28,5 @@ class TokenMiddleware(MiddlewareMixin):
                 return response(202, "token已过期", None)
             request.my_user = user
 
-    def process_response(self, request, response):
-        return response  # 执行完了这个中间件一定要 传递给下一个中间件
-
 
 

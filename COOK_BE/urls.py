@@ -24,6 +24,6 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     url('^register/$', RegisterView.as_view()),
     url('^login/$', LoginView.as_view()),
-    url('^user/$', UserView.as_view()),
-    url('^test/$', TestView.as_view())
+    url('^user/?$', UserView.as_view()),
+    url('^test/?$', TestView.as_view())
 ]

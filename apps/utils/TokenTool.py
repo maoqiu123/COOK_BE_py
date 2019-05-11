@@ -34,7 +34,7 @@ def check_token(token):
     user = User.objects.filter(token=token)[0]
     token_expire = user.token_expire
     if token_expire >= datetime.now():
-        make_token(user.email)
+        # make_token(user.email)
         return user
     else:
         return 202

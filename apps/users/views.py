@@ -1,12 +1,9 @@
 # Create your views here.
 from django.views.generic.base import View
-from utils.ResponseTool import response, response_form
+from utils.ResponseTool import response, response_form, response_object
 
 from .forms import RegisterForm, LoginForm, UserUpdateForm
-from .service import check_email, register, login, update_user
-from utils.TokenTool import check_token
-from django.http import QueryDict
-from django.http.multipartparser import MultiPartParser
+from .service import check_email, register, login, update_user, get_user
 
 
 class RegisterView(View):
@@ -38,6 +35,10 @@ class LoginView(View):
 
 
 class UserView(View):
+    def get(self, request):
+        user = get_user(request)
+        return response(1000, "查询用户信息成功", user)
+
     def put(self, request):
         user_update_form = UserUpdateForm(request.PUT)
         if user_update_form.is_valid():
@@ -48,7 +49,7 @@ class UserView(View):
 
 
 class TestView(View):
-    def post(self, request):
-        print(request.user)
+    def delete(self, request):
+        print(request.body)
         data = {"token": request.my_user.token}
-        return response(1000, "token验证成功", data)
+        return response(1000, "test", data)
