@@ -166,3 +166,17 @@ CORS_ALLOW_HEADERS = (
     'Pragma',
     'token'
 )
+
+QINIU_ACCESS_KEY = 'yi-qu1G_W7fSnAcH2GiLvg4BIbB0Bu2swKBXW_P8'
+QINIU_SECRET_KEY = 'Nu1ntfUCCBkPEVQYMZfi2Pvsb0VqBefecvjlNQu2'
+QINIU_BUCKET_NAME = 'cook'
+QINIU_BUCKET_DOMAIN = 'cook.thmaoqiu.cn'
+QINIU_SECURE_URL = False
+
+
+PREFIX_URL = 'http://'
+
+MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN + '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'
