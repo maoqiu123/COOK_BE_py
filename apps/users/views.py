@@ -5,6 +5,7 @@ from utils.ResponseTool import response, response_form, response_object
 from .forms import RegisterForm, LoginForm, UserUpdateForm
 from .service import check_email, register, login, update_user, get_user
 from utils.UploadTool import upload
+from utils.cacheTool import test
 
 
 class RegisterView(View):
@@ -51,5 +52,5 @@ class UserView(View):
 
 class TestView(View):
     def post(self, request):
-        url = upload(request)
-        return response(1000, "test", url)
+        test()
+        return response(1000, "test")
