@@ -142,8 +142,7 @@ class WebSocket(threading.Thread):
             if self.handshaken == False:  # 如果没有进行握手
                 if PRINT_FLAG:
                     print('INFO: Socket %s Start Handshaken with %s!' % (self.index, self.remote))
-                self.buffer = self.conn.recv(1024).decode(
-                    'utf-8')  # socket会话收到的只能是utf-8编码的信息，将接收到的bytes数据，通过utf-8编码方式解码为unicode编码进行处理
+                self.buffer = self.conn.recv(1024).decode('utf-8')  # socket会话收到的只能是utf-8编码的信息，将接收到的bytes数据，通过utf-8编码方式解码为unicode编码进行处理
                 if PRINT_FLAG:
                     print("INFO: Socket %s self.buffer is {%s}" % (self.index, self.buffer))
                 if self.buffer.find('\r\n\r\n') != -1:
