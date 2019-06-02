@@ -203,7 +203,6 @@ class WebSocket(threading.Thread):
                         sendMessage("%s %s say: %s" % (nowTime, self.remote, self.name + " Logout"))
                         deleteconnection(str(self.index))
                         self.conn.close()
-                        break
                     else:
                         nowTime = time.strftime('%H:%M:%S', time.localtime(time.time()))
                         sendMessage("%s %s say: %s" % (nowTime, self.remote, recv_message))
