@@ -4,6 +4,7 @@ import socket
 import struct
 import threading
 import time
+import json
 
 connectionlist = {}  # 存放链接客户fd,元组
 g_code_length = 0
@@ -171,7 +172,18 @@ class WebSocket(threading.Thread):
                     # 此处需要增加代码判断是否成功建立连接
                     self.handshaken = True  # socket连接成功建立之后修改握手标志
                     # 向全部连接客户端集合发送消息,(环境套接字x的到来)
-                    sendMessage("Welocomg " + self.name + " !")
+                    nowTime = time.strftime('%H:%M:%S', time.localtime(time.time()))
+                    data = {
+                        "type": "first",
+                        "data": {
+                            "id": self.index,
+                            "now": nowTime,
+                            "remote": self.remote,
+                            'message': "Welocomg user" + str(self.index) + " !"
+                        },
+                    }
+                    data = json.dumps(data, ensure_ascii=False)
+                    sendMessage(data)
                     g_code_length = 0
                 else:
                     print("Socket %s Error2!" % (self.index))
@@ -205,7 +217,18 @@ class WebSocket(threading.Thread):
                         self.conn.close()
                     else:
                         nowTime = time.strftime('%H:%M:%S', time.localtime(time.time()))
-                        sendMessage("%s %s say: %s" % (nowTime, self.remote, recv_message))
+                        data = {
+                            "type": "connecting",
+                            "data": {
+                                "id": self.index,
+                                "now": nowTime,
+                                "remote": self.remote,
+                                'message': recv_message
+                            },
+                        }
+                        data = json.dumps(data, ensure_ascii=False)
+                        sendMessage(data)
+                        # sendMessage("%s %s say: %s" % (nowTime, self.remote, recv_message))
                     g_code_length = 0
                     self.length_buffer = 0
                     self.buffer_utf8 = b""

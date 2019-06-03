@@ -19,11 +19,18 @@ from django.urls import path
 from django.conf.urls import url, include
 
 from users.views import RegisterView, LoginView, UserView, TestView
+from chat.views import ChatView
+import chat.urls as chat
+import users.urls as user
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-    url('^register/?$', RegisterView.as_view()),
-    url('^login/?$', LoginView.as_view()),
-    url('^user/?$', UserView.as_view()),
-    url('^test/?$', TestView.as_view())
+    url('', include(user)),
+    # url('^register/?$', RegisterView.as_view()),
+    # url('^login/?$', LoginView.as_view()),
+    # url('^user/?$', UserView.as_view()),
+
+    url('^chat/', include(chat)),
+    #
+    # url('^test/?$', TestView.as_view()),
 ]
