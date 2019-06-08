@@ -99,6 +99,7 @@ def sendMessage(msg):
         print(u'太长了')
     send_message = send_msg + msg.encode('utf-8')
     for connection in connectionlist.values():
+        print(connection.getpeername())
         if send_message != None and len(send_message) > 0:
             connection.send(send_message)
 

@@ -1,6 +1,6 @@
 # _*_ coding: utf-8 _*_
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+# from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 # Create your models here.
 

@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'xadmin',
     'crispy_forms',
+    'rest_framework',
     'users',
-    'rest_framework'
+    'chat',
 ]
 
 MIDDLEWARE = [

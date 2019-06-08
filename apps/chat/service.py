@@ -4,3 +4,7 @@
 def bind():
     print(666)
     pass
+
+
+def groupBind(group_id):
+    pass
