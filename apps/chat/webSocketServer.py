@@ -5,6 +5,7 @@ import struct
 import threading
 import time
 import json
+# from chat.service import test
 
 connectionlist = {}  # 存放链接客户fd,元组
 g_code_length = 0
@@ -265,6 +266,7 @@ class WebSocketServer(object):
             # 线程启动
             newSocket.start()
             # 更新连接的集合(hash表的对应关系)-name->sockfd
+            test()
             connectionlist['connection' + str(self.i)] = connection
             self.i += 1
 

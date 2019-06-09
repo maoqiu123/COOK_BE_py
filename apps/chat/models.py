@@ -13,4 +13,4 @@ class Group(models.Model):
         db_table = "group"
 
     def __str__(self):
-        return self.id
+        return self.group_name

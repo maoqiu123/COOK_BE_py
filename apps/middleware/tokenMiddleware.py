@@ -5,7 +5,7 @@ from utils.ResponseTool import response
 
 
 class TokenMiddleware(MiddlewareMixin):
-    white_list = ['/login/', '/register/', "/xadmin/"]  # 白名单
+    white_list = ['/login/', '/register/', "/xadmin/", "/chat/"]  # 白名单
     balck_list = ['/black/', ]  # 黑名单
 
     def process_request(self, request):
