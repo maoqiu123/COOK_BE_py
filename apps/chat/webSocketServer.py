@@ -266,7 +266,7 @@ class WebSocketServer(object):
             # 线程启动
             newSocket.start()
             # 更新连接的集合(hash表的对应关系)-name->sockfd
-            test()
+            # test()
             connectionlist['connection' + str(self.i)] = connection
             self.i += 1
 
